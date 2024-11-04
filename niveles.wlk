@@ -17,9 +17,9 @@ object juego {
 
     marioVidas.inicializarVidas()
 
-    game.onTick(200, "genera mas proyectiles", { donkeyKong.lanzarProyectil() })
+    game.onTick(500, "genera mas proyectiles", { donkeyKong.lanzarProyectil() })
 
-    game.onTick(200, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
+    game.onTick(510, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
 
     game.onTick(200, "movimiento proyectil", {donkeyKong.moverProyectiles()})
 
