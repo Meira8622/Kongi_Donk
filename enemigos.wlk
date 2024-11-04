@@ -6,17 +6,30 @@ import extras.*
 object donkeyKong {
     var property position = game.at(0,0)
     const proyectilesActivos=[]
-    method aparecerAleatorio() {  
-     position = game.at(0, 0.randomUpTo(game.height()-1))
+    var donkeyVertical= true
+    method aparecerAleatorio() {
+        if(donkeyVertical){ //donkey en x=0
+            position = game.at(0, 0.randomUpTo(game.height()-1))
+            donkeyVertical = false
+        }else{ //donkey en y=game.height()-1
+            position = game.at(0.randomUpTo(game.width()-1) , game.height()-1)
+            donkeyVertical = true
+        }
     }
 
     method image() = "kong0.png"
 
     method lanzarProyectil() {
         var proyectil
-        proyectil = new Fuegos(position = self.position().right(1))
-        game.addVisual(proyectil)
-        proyectilesActivos.add(proyectil)
+        if(!donkeyVertical){
+            proyectil = new Fuegos(position = self.position().right(1))
+            game.addVisual(proyectil)
+            proyectilesActivos.add(proyectil)
+        } else {
+            proyectil = new FuegosVerticales(position = self.position().down(1))
+            game.addVisual(proyectil)
+            proyectilesActivos.add(proyectil)
+        }
     }
     method moverProyectiles(){
         proyectilesActivos.forEach({proyectil => if(!proyectil.estaDetenido()){proyectil.desplazarse()} else proyectilesActivos.remove(proyectil)})
@@ -63,6 +76,14 @@ class Fuegos inherits Proyectiles {
         mario.perderVidas()
         self.detenerse()
     }
-
-
+}
+class FuegosVerticales inherits Fuegos{
+    override method image() = "fireballdown.png"
+    override method desplazarse() { 
+        if(self.inBounds()){
+            position = position.down(1)
+        } else {
+            self.detenerse()
+        }
+    } 
 }
