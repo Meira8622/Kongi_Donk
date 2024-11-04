@@ -26,7 +26,7 @@ object juego {
 
     game.onTick(200, "movimiento proyectil", {kongiDonk.moverProyectiles()})
 
-    game.onTick(2000, "generarMoneda", { generadorDeObjetos.generarMoneda() }) // Genera una moneda cada 2 segundos
+    // game.onTick(2000, "generarMoneda", { generadorDeObjetos.generarMoneda() }) // Genera una moneda cada 2 segundos
   }
 
   method terminar(){

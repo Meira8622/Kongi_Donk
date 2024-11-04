@@ -19,7 +19,7 @@ object kongiDonk {
         } else if(direction == 0 && position.y() != 0 ) {
             position = position.down(1)
         }
-    }
+    } // TODO: Agregar patrones de movimiento mas complejo
 
     // method aparecerAleatorio() { // reworked
     //     if(donkeyVertical){ //donkey en x=0
