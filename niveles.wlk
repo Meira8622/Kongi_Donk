@@ -11,6 +11,10 @@ object juego {
 
     game.addVisual(mario)
 
+    game.addVisual(moneda_inherte)
+    game.addVisual(contador_moneda)
+
+
     marioVidas.inicializarVidas()
 
     game.onTick(200, "genera mas proyectiles", { donkeyKong.lanzarProyectil() })
@@ -40,19 +44,13 @@ object config {
   method configurarTeclas() {
     
     keyboard.a().onPressDo({mario.mover(mario.position().left(1))})
-    
 		keyboard.d().onPressDo({mario.mover(mario.position().right(1))})
-
     keyboard.w().onPressDo({mario.mover(mario.position().up(1))})
-    
 		keyboard.s().onPressDo({mario.mover(mario.position().down(1))})
 
     keyboard.left().onPressDo({ mario.mover(mario.position().left(1)) })
-    
 		keyboard.right().onPressDo({mario.mover(mario.position().right(1))})
-
     keyboard.up().onPressDo({mario.mover(mario.position().up(1))})
-
     keyboard.down().onPressDo({mario.mover(mario.position().down(1))})
 
     //keyboard.space().onPressDo({mario.saltar()})

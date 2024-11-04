@@ -64,11 +64,12 @@ object mario {
     monedas = monedas + 1
     self.playMoneda()
 
-    if(monedas == 5){
-      mario.ganar()
+    if(monedas == 5){ //aca depende la dificultad pueden ser más monedas, entonces monedas se deberá igualar a una variable tipo "victoria_monedas" o "monedas_tope"
+      self.ganar()
     }
     //Agregar contador de monedas
   }
+
 
     method ganar() {
       juego.terminar()
@@ -94,6 +95,8 @@ object marioVidas {
     vidas.forEach{vida => game.addVisual(vida)}
   }
 }
+
+
 
 class Vida{
 
