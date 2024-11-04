@@ -5,8 +5,11 @@ import extras.*
 
 object donkeyKong {
     var property position = game.at(0,0)
+
     const proyectilesActivos=[]
+
     var donkeyVertical= true
+
     method aparecerAleatorio() {
         if(donkeyVertical){ //donkey en x=0
             position = game.at(0, 0.randomUpTo(game.height()-1))
@@ -18,7 +21,9 @@ object donkeyKong {
     }
 
     method image() = "kongi.png"
+
     method playGolpe() = game.sound("kong-golpe.mp3").play()
+
     method lanzarProyectil() {
         var proyectil
         if(!donkeyVertical){
@@ -35,18 +40,21 @@ object donkeyKong {
         proyectilesActivos.forEach({proyectil => if(!proyectil.estaDetenido()){proyectil.desplazarse()} else proyectilesActivos.remove(proyectil)})
     }
 
+
     method manosiadoPorMario(){
         if(self.position().x() == 0){
-            mario.mover(mario.position().right(1))
-            mario.perderVidas()
-            game.say(self, "Salí Mario")
-            self.playGolpe()
+           mario.mover(mario.position().right(1))
+           self.golpearMario()
         } else {
             mario.mover(mario.position().down(1))
-            mario.perderVidas()
-            game.say(self, "Salí Mario")
-            self.playGolpe()
-        }
+            self.golpearMario()
+    }
+    }
+
+    method golpearMario(){
+        mario.perderVidas()
+        game.say(self, "Salí Mario")
+        self.playGolpe()
     }
 
 }

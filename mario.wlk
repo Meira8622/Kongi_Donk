@@ -35,29 +35,44 @@ object mario {
     if(!invulnerabilidad){
       vidas -= 1
       if(vidas != 0){
-        game.say(self, "me quedan " + self.vidas() + " vida/s")
-        self.playDanio()
+        self.recibirDanio()
         marioVidas.perderCorazon()
         self.invulnerable()
 
       }else{
+        
+        self.muerte()
+        marioVidas.perderCorazon()
+        self.invulnerable()
+
+        game.schedule(200, { position = position.down(1)})
+        juego.terminar()
+      }
+      }
+
+  }
+  method inBoundsCheck(newPos) = newPos.y() <=game.height()-1 && newPos.y() >= 0 && newPos.x() >=0 && newPos.x() <= game.width()-1
+
+  method invulnerable(){
+
+    invulnerabilidad = true
+    game.schedule(1000, { invulnerabilidad = false })
+
+  }
+
+  method recibirDanio(){
+      game.say(self, "me quedan " + self.vidas() + " vida/s")
+      self.playDanio()
+  }
+
+
+  method muerte() {
         sufijo = "muerte"
         position = position.up(1)
         game.say(self, "llamen a dios")
         self.playMuerte()
-        marioVidas.perderCorazon()
-        self.invulnerable()
-
-
-        game.schedule(200, { position = position.down(1)})
-        juego.terminar()
-      }}
   }
-  method inBoundsCheck(newPos) = newPos.y() <=game.height()-1 && newPos.y() >= 0 && newPos.x() >=0 && newPos.x() <= game.width()-1
-  method invulnerable(){
-    invulnerabilidad = true
-    game.schedule(1000, { invulnerabilidad = false })
-  }
+
 
   method ganarMoneda() {
     monedas = monedas + 1

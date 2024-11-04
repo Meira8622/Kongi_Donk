@@ -50,7 +50,7 @@ object config {
     
 		keyboard.right().onPressDo({mario.mover(mario.position().right(1))})
 
-    //keyboard.space().onPressDo({mario.saltar()})
+    
 
   }
 

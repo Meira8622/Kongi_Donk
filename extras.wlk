@@ -30,3 +30,38 @@ class Moneda {
     }
   }
 }
+
+
+
+object menu {
+    method image() = "kongstill0.png"
+
+    method position() = game.center()
+
+    method text() = "
+
+    KONGI DONK
+
+
+
+
+
+
+    Pulsa Espacio para iniciar!"
+  
+    method textColor() = "c31212cc"
+
+    method iniciarMenu(){
+    game.stop()
+    game.addVisual(self)
+    self.iniciarJuego()
+    
+  }
+
+
+    method iniciarJuego(){
+        keyboard.space().onPressDo({juego.iniciar()})
+        keyboard.space().onPressDo({game.removeVisual(self)})
+    }
+
+}

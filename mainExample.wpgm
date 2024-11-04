@@ -14,6 +14,7 @@ program elMonoConRabiaQueTiraBarrilesPeroAcaTiraFuego {
 
     game.boardGround("background3.png")
 
-	juego.iniciar()
+	menu.iniciarMenu()
+	//juego.iniciar()
 	game.start()
 }
