@@ -1,30 +1,28 @@
 import wollok.game.*
 import mario.*
-import extras.*
+import items.*
 import enemigos.*
 
 object juego {
-  var property dificultad = 1 //SIN USAR TODAVÍA 
+  var property dificultad = 1 //SIN USAR TODAVÍA
+
   method iniciar() {
 
-    game.addVisual(donkeyKong)
-
+    config.configurarTeclas()
+    config.configurarColisiones()
+    
+    game.addVisual(kongiDonk)
     game.addVisual(mario)
 
     marioVidas.inicializarVidas()
 
-    game.onTick(500, "genera mas proyectiles", { donkeyKong.lanzarProyectil() })
+    game.onTick(500, "genera mas proyectiles", { kongiDonk.lanzarProyectil() })
 
-    game.onTick(510, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
+    game.onTick(200, "se mueve la mona", { kongiDonk.mover() })
 
-    game.onTick(200, "movimiento proyectil", {donkeyKong.moverProyectiles()})
+    game.onTick(200, "movimiento proyectil", {kongiDonk.moverProyectiles()})
 
     game.onTick(2000, "generarMoneda", { generadorDeObjetos.generarMoneda() }) // Genera una moneda cada 2 segundos
-    
-    config.configurarTeclas()
-
-    config.configurarColisiones()
-
   }
 
   method terminar(){
@@ -33,29 +31,18 @@ object juego {
 
 }
 
-
 object config {
 
   method configurarTeclas() {
     
     keyboard.a().onPressDo({mario.mover(mario.position().left(1))})
-    
 		keyboard.d().onPressDo({mario.mover(mario.position().right(1))})
-
     keyboard.w().onPressDo({mario.mover(mario.position().up(1))})
-    
 		keyboard.s().onPressDo({mario.mover(mario.position().down(1))})
-
-    keyboard.left().onPressDo({ mario.mover(mario.position().left(1)) })
-    
-		keyboard.right().onPressDo({mario.mover(mario.position().right(1))})
-
-    //keyboard.space().onPressDo({mario.saltar()})
 
   }
 
-  method configurarColisiones() {  // con peach y fuegos, faltan plataformas y posicionar los personajes y algo para ganar score
-
+  method configurarColisiones() {
     game.onCollideDo(mario, {algo => algo.manosiadoPorMario()})
   }
 

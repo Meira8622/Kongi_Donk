@@ -1,8 +1,7 @@
 import wollok.game.*
 import niveles.*
-import extras.* 
+import items.* 
 import enemigos.*
-
 
 object mario {
 

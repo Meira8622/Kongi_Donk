@@ -4,13 +4,15 @@ import niveles.*
 import enemigos.*
 
 object generadorDeObjetos {
-  method generarMoneda() {
+
+method generarMoneda() {
     const nuevaMoneda = new Moneda(position = game.at(1.randomUpTo(14), 1.randomUpTo(14)))
     game.addVisual(nuevaMoneda)
     nuevaMoneda.iniciarAnimacion()
-  }
+ }
 
 }
+
 class Moneda {
   var property position
   var property recogida = false
@@ -18,7 +20,7 @@ class Moneda {
 
   //quiza se puede hacer que la moneda gire? re extra pero quedaria re bien
   method image() = "coin"+ sufijo + ".png"
-
+// 
   method iniciarAnimacion() {
     if (not recogida) {
       self.animarMoneda() 
