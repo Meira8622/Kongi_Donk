@@ -20,31 +20,45 @@ class Moneda {
   method image() = "coin"+ sufijo + ".png"
 
   method iniciarAnimacion() {
-    self.animarMoneda() // Llama al metodo de animación al inicio
+    if (not recogida) {
+      self.animarMoneda() 
+      self.manosiadoPorMario() 
+    }
   }
 
   method animarMoneda() {
-    game.schedule(100, {
-      if (sufijo < 5) {
-        sufijo += 1
-      } else {
-        sufijo = 1
-      }
-      game.removeVisual(self) // Remueve la moneda para actualizar la imagen
-      game.addVisual(self) // Vuelve a agregarla con la nueva imagen
-      self.animarMoneda() // Continua el ciclo de animación
-    })
+    if (not recogida) { 
+      game.schedule(100, {
+        if (sufijo < 5) {
+          sufijo += 1
+        } else {
+          sufijo = 1
+        }
+        self.animarMoneda() 
+      })
+    }
   }
 
   method recoger() {
     recogida = true
     game.removeVisual(self)
     mario.ganarMoneda()
+    recogida = false
   }
 
   method manosiadoPorMario() {
-    if (!recogida) {
-      self.recoger()
-    }
+    game.schedule(50, {
+      if (!recogida && self.estaCercaDe(mario)) {  
+        self.recoger()
+      } else if (!recogida) {
+        self.manosiadoPorMario() 
+      }
+    })
+  }
+
+  method estaCercaDe(objeto) {
+    var distanciaX = (self.position().x() - objeto.position().x()).abs()
+    var distanciaY = (self.position().y() - objeto.position().y()).abs()
+    return distanciaX <= 1 && distanciaY <= 1 
   }
 }
