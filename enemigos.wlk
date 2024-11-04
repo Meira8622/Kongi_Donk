@@ -18,7 +18,7 @@ object donkeyKong {
     }
 
     method image() = "kong0.png"
-
+    method playGolpe() = game.sound("kong-golpe.mp3").play()
     method lanzarProyectil() {
         var proyectil
         if(!donkeyVertical){
@@ -36,11 +36,17 @@ object donkeyKong {
     }
 
     method manosiadoPorMario(){
-        mario.mover(mario.position().right(1))
-        mario.perderVidas()
-        game.say(self, "Salí Mario")
-        //Poner ruido de sopapo
-        return true
+        if(donkeyKong.position().x() == 0){
+            mario.mover(mario.position().right(1))
+            mario.perderVidas()
+            game.say(self, "Salí Mario")
+            self.playGolpe()
+        } else {
+            mario.mover(mario.position().down(1))
+            mario.perderVidas()
+            game.say(self, "Salí Mario")
+            self.playGolpe()
+        }
     }
 
 }

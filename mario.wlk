@@ -29,6 +29,7 @@ object mario {
   method play() = game.sound("jump.wav").play()
   method playMuerte() = game.sound("mario-game-over.mp3").play()
   method playDanio() = game.sound("mario-danio.mp3").play()
+  method playMoneda() = game.sound("coin.wav").play()
 
   method perderVidas() {
     if(!invulnerabilidad){
@@ -60,7 +61,7 @@ object mario {
 
   method ganarMoneda() {
     monedas = monedas + 1
-    //Agregar sonidito copado
+    self.playMoneda()
     //Agregar contador de monedas
   }
 }

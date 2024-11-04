@@ -6,7 +6,7 @@ import enemigos.*
 object generadorDeObjetos {
   method generarMoneda() {
     const nuevaMoneda = new Moneda(position = game.at(1.randomUpTo(15), 1.randomUpTo(15)))
-    game.addVisual(nuevaMoneda) // Inicia la moneda
+    game.addVisual(nuevaMoneda)
   }
 
 }
@@ -23,10 +23,9 @@ class Moneda {
     mario.ganarMoneda()
   }
 
-  // Método para verificar si Mario ha recogido la moneda
   method manosiadoPorMario() {
     if (!recogida) {
-      self.recoger() // Si hay colisión, recoge la moneda
+      self.recoger()
     }
   }
 }
