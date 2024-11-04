@@ -63,4 +63,22 @@ class Moneda {
     var distanciaY = (self.position().y() - objeto.position().y()).abs()
     return distanciaX <= 1 && distanciaY <= 1 
   }
+
+
 }
+
+
+object moneda_inherte{
+  method image() = "money1.png"
+  method position() = game.at(game.width() - 2,0)
+}
+
+object contador_moneda{
+
+  method text() = mario.monedas().toString()
+  method textColor() = "FFFFFF"
+  method position() = game.at(game.width() - 1,0)
+
+}
+
+

@@ -14,6 +14,10 @@ object juego {
     game.addVisual(kongiDonk)
     game.addVisual(mario)
 
+    game.addVisual(moneda_inherte)
+    game.addVisual(contador_moneda)
+
+
     marioVidas.inicializarVidas()
 
     game.onTick(500, "genera mas proyectiles", { kongiDonk.lanzarProyectil() })
@@ -26,6 +30,7 @@ object juego {
   }
 
   method terminar(){
+    game.sound("levelcomplete.wav").play()
     game.schedule(1000, {game.stop()})
   }
 

@@ -44,6 +44,7 @@ object kongiDonk {
         }
     }
 
+
     method moverProyectiles(){
         proyectilesActivos.forEach({proyectil => if(!proyectil.estaDetenido()){proyectil.desplazarse()} else proyectilesActivos.remove(proyectil)})
     }
