@@ -13,6 +13,8 @@ object juego {
 
     game.onTick(2500, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
 
+    game.onTick(2000, "generarMoneda", { Moneda.generarMoneda() }) // Genera una moneda cada 2 segundos
+
     game.addVisual(mario)
 
     //game.addVisual(princesaPeach) //encontrar una mas grande (?)
@@ -32,6 +34,8 @@ object juego {
   }
 
 }
+
+
 
 
 object config {
@@ -57,7 +61,6 @@ object config {
   method configurarColisiones() {  // con peach y fuegos, faltan plataformas y posicionar los personajes y algo para ganar score
 
     game.onCollideDo(mario, {algo => algo.manosiadoPorMario()})
-
   }
 
 }

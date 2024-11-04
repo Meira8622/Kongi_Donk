@@ -72,15 +72,17 @@ object mario {
     return nuevaPosi.between(xDesde, xHasta) || nuevaPosi.between(yDesde, yHasta)
   }
 
-
+  method ganarMoneda() {
+    var monedas = monedas + 1 // Incrementar el contador de monedas
+    game.say(self, "He recogido una moneda! Total: " + monedas) // Mensaje de feedback
+  }
 }
-//object vida1 inherits Vida{}
 
 object marioVidas {
   
-  var property vida1 =  new Vida(position = game.at(0,9))
-  var property vida2 =  new Vida(position = game.at(1,9))
-  var property vida3 =  new Vida(position = game.at(2,9))
+  var property vida1 =  new Vida(position = game.at(0,15))
+  var property vida2 =  new Vida(position = game.at(1,15))
+  var property vida3 =  new Vida(position = game.at(2,15))
 
   var property vidas = [vida1, vida2, vida3]
   
@@ -92,6 +94,6 @@ class Vida{
 
   var property position
 
-  method image() = "heart.png"
+  method image() = "heart1.png"
 
 }
