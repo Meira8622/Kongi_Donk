@@ -4,23 +4,23 @@ import extras.*
 import enemigos.*
 
 object juego {
-
+  var property dificultad = 1 //SIN USAR TODAVÍA 
   method iniciar() {
 
     game.addVisual(donkeyKong)
-    //game.addVisualCharacter(mario)
-    game.onTick(2500, "genera mas proyectiles", { donkeyKong.lanzarProyectil() }) //va lenteja el juego, denle la letal a wollok
-
-    game.onTick(2500, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
 
     game.addVisual(mario)
 
-    //game.addVisual(princesaPeach) //encontrar una mas grande (?)
+    marioVidas.inicializarVidas()
 
-    marioVidas.vidas().forEach{vida => game.addVisual(vida)} //las vidas son una coleccion. En distintos niveles pueden cambiar las vidas. Segun el nivel, podemos sacar la ultima vida en la lista para reducir las vidas, y sigue funcando
+    game.onTick(200, "genera mas proyectiles", { donkeyKong.lanzarProyectil() })
+
+    game.onTick(200, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
+
+    game.onTick(200, "movimiento proyectil", {donkeyKong.moverProyectiles()})
+
+    game.onTick(2000, "generarMoneda", { generadorDeObjetos.generarMoneda() }) // Genera una moneda cada 2 segundos
     
-    //game.addVisual(plataforma)
-
     config.configurarTeclas()
 
     config.configurarColisiones()
@@ -57,7 +57,6 @@ object config {
   method configurarColisiones() {  // con peach y fuegos, faltan plataformas y posicionar los personajes y algo para ganar score
 
     game.onCollideDo(mario, {algo => algo.manosiadoPorMario()})
-
   }
 
 }
