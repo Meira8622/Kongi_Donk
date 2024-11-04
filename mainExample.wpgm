@@ -12,11 +12,7 @@ program elMonoConRabiaQueTiraBarrilesPeroAcaTiraFuego {
 	game.width(15)
 	game.cellSize(50)
 
-
-	// add assets in asset folder, for example, for the background
-    game.boardGround("background.png")
-	
-
+    game.boardGround("background3.png")
 
 	juego.iniciar()
 	game.start()

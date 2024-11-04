@@ -9,20 +9,18 @@ object juego {
 
     game.addVisual(donkeyKong)
 
+    game.addVisual(mario)
+
+    marioVidas.inicializarVidas()
+
     game.onTick(200, "genera mas proyectiles", { donkeyKong.lanzarProyectil() })
 
     game.onTick(200, "se mueve la mona", { donkeyKong.aparecerAleatorio() })
 
-    game.onTick(150, "movimiento proyectil", {donkeyKong.moverProyectiles()})
+    game.onTick(200, "movimiento proyectil", {donkeyKong.moverProyectiles()})
 
-    //game.onTick(2000, "generarMoneda", { Moneda.generarMoneda() }) // Genera una moneda cada 2 segundos
-
-    game.addVisual(mario)
-
-    //marioVidas.vidas().forEach{vida => game.addVisual(vida)} //las vidas son una coleccion. En distintos niveles pueden cambiar las vidas. Segun el nivel, podemos sacar la ultima vida en la lista para reducir las vidas, y sigue funcando
+    game.onTick(2000, "generarMoneda", { generadorDeObjetos.generarMoneda() }) // Genera una moneda cada 2 segundos
     
-    //game.addVisual(plataforma)
-
     config.configurarTeclas()
 
     config.configurarColisiones()
@@ -34,8 +32,6 @@ object juego {
   }
 
 }
-
-
 
 
 object config {

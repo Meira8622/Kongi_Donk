@@ -3,29 +3,30 @@ import mario.*
 import niveles.*
 import enemigos.*
 
-class Moneda {
-  var property position // Posición de la moneda
-  var property recogida = false // Estado de la moneda, si ha sido recogida o no
+object generadorDeObjetos {
+  method generarMoneda() {
+    const nuevaMoneda = new Moneda(position = game.at(1.randomUpTo(14), 1.randomUpTo(14)))
+    game.addVisual(nuevaMoneda)
+  }
 
-  method image() = "coin4.png" // Imagen de la moneda
+}
+class Moneda {
+  var property position
+  var property recogida = false
+  var property sufijo = 1
+
+  //quiza se puede hacer que la moneda gire? re extra pero quedaria re bien
+  method image() = "money"+ sufijo + ".png"
 
   method recoger() {
-    recogida = true // Cambia el estado a recogida
-    game.removeVisual(self) // Elimina la moneda del juego
-    mario.ganarMoneda() // Llama al método para que Mario gane una moneda
+    recogida = true
+    game.removeVisual(self)
+    mario.ganarMoneda()
   }
 
-  // Método para verificar si Mario ha recogido la moneda
   method manosiadoPorMario() {
-    if (!recogida && game.onSameCell(mario, self)) {
-      self.recoger() // Si hay colisión, recoge la moneda
+    if (!recogida) {
+      self.recoger()
     }
-  }
-
-  // Método para generar una moneda en una posición aleatoria
-  method generarMoneda() {
-    const nuevaMoneda = new Moneda(position = game.at(1.randomUpTo(15), 1.randomUpTo(15)))
-
-    game.addVisual(self) // Inicia la moneda
   }
 }
