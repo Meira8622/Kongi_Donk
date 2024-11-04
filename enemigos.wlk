@@ -5,49 +5,45 @@ import extras.*
 
 object donkeyKong {
     var property position = game.at(0,0)
-
+    const proyectilesActivos=[]
     method aparecerAleatorio() {  
-     position = game.at(0, 0.randomUpTo(game.height()))
+     position = game.at(0, 0.randomUpTo(game.height()-1))
     }
-
 
     method image() = "kong0.png"
 
     method lanzarProyectil() {
         var proyectil
-
-        proyectil = new Fuegos(position = self.position())
+        proyectil = new Fuegos(position = self.position().right(1))
         game.addVisual(proyectil)
-        game.onTick(1000, "lanzar", { proyectil.recorrido() })
-
+        proyectilesActivos.add(proyectil)
+    }
+    method moverProyectiles(){
+        proyectilesActivos.forEach({proyectil => if(!proyectil.estaDetenido()){proyectil.desplazarse()} else proyectilesActivos.remove(proyectil)})
     }
 
     method manosiadoPorMario(){
-
-        return true
+        mario.mover(mario.position().right(1))
+        mario.perderVidas()
         game.say(self, "Salí Mario")
-
+        //Poner ruido de sopapo
+        return true
     }
 
 }
 
 
 class Proyectiles { //se podrian agregar mas
-
+    method inBounds() = position.y() <=game.height() && position.y() >= 0 && position.x() >=0 && position.x() <= game.width()
     var property position 
-    
-    //method quema() = true
-    method recorrido() {
-        game.onTick(500, self.tick(), { self.desplazarse() })
+    var property detenido = false
+    method inicializarProyectiles() {
     }
-
     method desplazarse()
-
-    method tick()
-
+    method estaDetenido() = detenido
     method detenerse() {
-        game.removeTickEvent(self.tick())
         game.removeVisual(self)
+        detenido = true
     }
 }
 
@@ -56,9 +52,12 @@ class Fuegos inherits Proyectiles {
 
     method image() = "fireballright.png"
     override method desplazarse() { 
-        position = position.right(1)
-    }
-    override method tick() = "fuegos"
+        if(self.inBounds()){
+            position = position.right(1)
+        } else {
+            self.detenerse()
+        }
+    } 
 
     method manosiadoPorMario(){
         mario.perderVidas()

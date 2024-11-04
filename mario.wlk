@@ -33,7 +33,7 @@ object mario {
       }
       
     }
-
+/*
   method saltar() {
     var backupSufijo = sufijo
 
@@ -45,7 +45,7 @@ object mario {
         sufijo = backupSufijo})
     }
 	}
-
+*/
   method play() = game.sound("jump.wav").play()
   method playMuerte() = game.sound("mario-game-over.mp3").play()
   method playDanio() = game.sound("mario-danio.mp3").play()
@@ -75,6 +75,7 @@ object mario {
   method ganarMoneda() {
     var monedas = monedas + 1 // Incrementar el contador de monedas
     game.say(self, "He recogido una moneda! Total: " + monedas) // Mensaje de feedback
+    //Agregar sonidito copado
   }
 }
 

@@ -16,7 +16,7 @@ class Moneda {
   }
 
   // Método para verificar si Mario ha recogido la moneda
-  method manosiadaPorMario() {
+  method manosiadoPorMario() {
     if (!recogida && game.onSameCell(mario, self)) {
       self.recoger() // Si hay colisión, recoge la moneda
     }
