@@ -47,11 +47,10 @@ object donkeyKong {
 
 
 class Proyectiles { //se podrian agregar mas
-    method inBounds() = position.y() <=game.height() && position.y() >= 0 && position.x() >=0 && position.x() <= game.width()
     var property position 
     var property detenido = false
-    method inicializarProyectiles() {
-    }
+   
+    method inBounds() = position.y() <=game.height() && position.y() >= 0 && position.x() >=0 && position.x() <= game.width()
     method desplazarse()
     method estaDetenido() = detenido
     method detenerse() {
@@ -62,7 +61,6 @@ class Proyectiles { //se podrian agregar mas
 
 
 class Fuegos inherits Proyectiles {
-
     method image() = "fireballright.png"
     override method desplazarse() { 
         if(self.inBounds()){
@@ -71,7 +69,6 @@ class Fuegos inherits Proyectiles {
             self.detenerse()
         }
     } 
-
     method manosiadoPorMario(){
         mario.perderVidas()
         self.detenerse()
