@@ -13,7 +13,7 @@ object mario {
 
   var sufijo = "right"
 
-  method image() = "mario-"+ sufijo +".png"
+  method image() = "mario1-"+ sufijo +".png"
   
   method mover(nuevaPosicion) {
     if (self.inBoundsCheck(nuevaPosicion) && vidas != 0) {
@@ -90,6 +90,6 @@ class Vida{
 
   var property position
 
-  method image() = "heart1.png"
+  method image() = "corazon1.png"
 
 }

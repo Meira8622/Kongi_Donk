@@ -17,7 +17,7 @@ object donkeyKong {
         }
     }
 
-    method image() = "kong0.png"
+    method image() = "kongi.png"
     method playGolpe() = game.sound("kong-golpe.mp3").play()
     method lanzarProyectil() {
         var proyectil
@@ -36,7 +36,7 @@ object donkeyKong {
     }
 
     method manosiadoPorMario(){
-        if(donkeyKong.position().x() == 0){
+        if(self.position().x() == 0){
             mario.mover(mario.position().right(1))
             mario.perderVidas()
             game.say(self, "Salí Mario")
