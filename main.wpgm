@@ -1,0 +1,20 @@
+import wollok.game.*
+import levels.*
+import mario.*
+import items.*
+import enemigos.*
+
+program kongi {
+	game.title("Kongi Donk")
+	
+	game.cellSize(50) // tamaño de celdas
+	game.width(15) // cantidad de celdas verticales
+	game.height(15) // cantidad de celdas horizontales
+	// tamaño del juego -> W x H celdas, tamaño de objetos -> 1 celda
+
+    game.boardGround("background.png")
+
+	juego.iniciar()
+	
+	game.start()
+}
