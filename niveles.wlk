@@ -28,6 +28,7 @@ object juego {
   }
 
   method terminar(){
+    game.sound("levelcomplete.wav").play()
     game.schedule(1000, {game.stop()})
   }
 
@@ -49,6 +50,10 @@ object config {
     keyboard.left().onPressDo({ mario.mover(mario.position().left(1)) })
     
 		keyboard.right().onPressDo({mario.mover(mario.position().right(1))})
+
+    keyboard.up().onPressDo({mario.mover(mario.position().up(1))})
+
+    keyboard.down().onPressDo({mario.mover(mario.position().down(1))})
 
     //keyboard.space().onPressDo({mario.saltar()})
 

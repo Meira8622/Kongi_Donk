@@ -7,6 +7,7 @@ object donkeyKong {
     var property position = game.at(0,0)
     const proyectilesActivos=[]
     var donkeyVertical= true
+
     method aparecerAleatorio() {
         if(donkeyVertical){ //donkey en x=0
             position = game.at(0, 0.randomUpTo(game.height()-1))
@@ -15,10 +16,12 @@ object donkeyKong {
             position = game.at(0.randomUpTo(game.width()-1) , game.height()-1)
             donkeyVertical = true
         }
+
     }
 
     method image() = "kongi.png"
     method playGolpe() = game.sound("kong-golpe.mp3").play()
+
     method lanzarProyectil() {
         var proyectil
         if(!donkeyVertical){
@@ -31,10 +34,12 @@ object donkeyKong {
             proyectilesActivos.add(proyectil)
         }
     }
+
     method moverProyectiles(){
         proyectilesActivos.forEach({proyectil => if(!proyectil.estaDetenido()){proyectil.desplazarse()} else proyectilesActivos.remove(proyectil)})
     }
 
+    //Mario toca al mono y el mono lo empuja 
     method manosiadoPorMario(){
         if(self.position().x() == 0){
             mario.mover(mario.position().right(1))

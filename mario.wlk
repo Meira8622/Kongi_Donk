@@ -54,6 +54,7 @@ object mario {
       }}
   }
   method inBoundsCheck(newPos) = newPos.y() <=game.height()-1 && newPos.y() >= 0 && newPos.x() >=0 && newPos.x() <= game.width()-1
+
   method invulnerable(){
     invulnerabilidad = true
     game.schedule(1000, { invulnerabilidad = false })
@@ -62,8 +63,16 @@ object mario {
   method ganarMoneda() {
     monedas = monedas + 1
     self.playMoneda()
+
+    if(monedas == 5){
+      mario.ganar()
+    }
     //Agregar contador de monedas
   }
+
+    method ganar() {
+      juego.terminar()
+    }
 }
 
 object marioVidas {
